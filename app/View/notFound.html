@@ -1,0 +1,89 @@
+<div class="container">
+  <span class="left">404</span><br>
+  <div class="pulse"></div>
+  <i class="fas fa-heart"></i>
+  <span class="right">Are you lost?</span>
+</div>
+<style>
+  $purple: #AB6FBC;
+  $lightpurple: #CD99DB;
+  $pink: #F4B0CC;
+  html {
+    box-sizing: border-box;
+  }
+
+  html,body {
+    height: 100%;
+  }
+
+  body {
+    margin: 0;
+    background: #efefef;
+    font-family: IBM Plex serif;
+    font-size: 20px;
+  }
+
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    flex-direction: column;
+  }
+
+  @keyframes slideInFromLeft {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideInFromRight {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  .left {
+    font-size: 200px;
+    color: $purple;
+    text-shadow: 1px 1px 10px rgba($lightpurple,1);
+    animation: 1.2s ease-out 0s 1 slideInFromLeft;
+    margin-bottom: -70px;
+  }
+
+  .right {
+    animation: 1.2s ease-out 0s 1 slideInFromRight;
+    color: $purple;
+  }
+
+  @keyframes grow {
+    0% {
+      transform: scale(1);
+    }
+
+    60% {
+      color: $pink;
+    }
+    100% {
+      transform: scale(1.2);
+      color: $lightpurple;
+    }
+  }
+
+  .fa-heart {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: $pink;
+    font-size: 50px;
+    top: 200px;
+    animation: grow 1s ease infinite;
+  }
+</style>

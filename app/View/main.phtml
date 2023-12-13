@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Сократитель ссылок</title>
+    <style>
+        /* CSS-стили для таблицы */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#shortenForm").submit(function(event) {
+                event.preventDefault(); // Предотвращает отправку формы
+
+                var url = $("#urlInput").val();
+
+                // Отправка AJAX-запроса на сервер
+                $.ajax({
+                    type: "POST",
+                    url: "/short",
+                    data: { url: url },
+                    success: function(response) {
+                        $("#shortenedUrl").text(response);
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<?php
+echo "Привет, $username!";
+?>
+<a href="/logout" class="register-link">Выйти</a>
+<h1>Сократитель ссылок</h1>
+<form id="shortenForm">
+    <input type="text" id="urlInput" placeholder="Введите URL-адрес">
+    <button type="submit">Сократить</button>
+</form>
+<p>Короткий URL-адрес: <span id="shortenedUrl"></span></p>
+
+<!-- Таблица для вывода данных -->
+<table>
+    <tr>
+        <th>Хэш</th>
+        <th>Длинный URL</th>
+        <th>Количество переходов</th>
+    </tr>
+    <?php foreach ($hashs as $hash): ?>
+        <tr>
+            <td><a href="/short/<?php echo $hash['hash'];?>"><?php echo $hash['hash'];?></a></td>
+            <td><?php echo $hash['long_url'];?></td>
+            <td><?php echo $hash['quantity'];?></td>
+        </tr>
+    <?php endforeach; ?>
+</table>
+</body>
+</html>
