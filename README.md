@@ -60,4 +60,5 @@ create table urls
     "hash" varchar unique,
     "quantity" integer
 );
+
 4. Перейдите по ссылке http://localhost/main, чтобы начать использовать сервис.
